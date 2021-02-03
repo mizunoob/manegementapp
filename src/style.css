@@ -1,0 +1,16 @@
+.list-small {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-group {
+  margin-bottom: 8px;
+}
+
+.RndStyle {
+  background: lightcyan;
+  padding: 20px;
+  z-index: 1;
+  border-radius: 10px;
+  border: 2px solid lightskyblue;
+}
