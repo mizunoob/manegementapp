@@ -2,8 +2,13 @@ import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./style.css"
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
 import { Rnd } from "react-rnd";
+import 'react-tabs/style/react-tabs.css';
+
+import { AllTasks } from './components/AllTasks'
+import { IncompleteTasks } from './components/IncompleteTasks'
+import { CompleteTasks } from './components/CompleteTasks'
+import { DeleteMode } from './components/DeleteMode'
 
 const App = () => {
   const [ title, setTitle ] = useState('')
@@ -17,78 +22,6 @@ const App = () => {
 
   const unCreatable = title === '' || body === '' || progress === '選択して下さい'
   const unDeletable = tasks.length === 0
-
-  const AllTasks = (props) => {
-    const {tasks} = props
-    return (
-      <>
-        {tasks.map((task, index) => {
-          return (
-            <li href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{task.title}</h5>
-                <small>{task.lastdate}</small>
-              </div>
-              <p class="mb-1">{task.body}</p>
-              <div className="list-small">
-                <small>{task.num}</small>
-                <small>{task.progress}</small>
-              </div>
-            </li>
-          )
-        })}
-      </>
-      
-    )
-  }
-
-  const IncompleteTasks = () => {
-    return (
-      <>
-      {tasks.map((task, index) => {
-        if (task.progress === '未完了') {
-          return (
-            <li href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{task.title}</h5>
-                <small>{task.lastdate}</small>
-              </div>
-              <p class="mb-1">{task.body}</p>
-              <div className="list-small">
-                <small>{task.num}</small>
-                <small>{task.progress}</small>
-              </div>
-            </li>
-          )
-        } else return
-      })}
-    </>
-    )
-  }
-
-  const CompleteTasks = () => {
-    return (
-      <>
-      {tasks.map((task, index) => {
-        if (task.progress === '完了') {
-          return (
-            <li href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{task.title}</h5>
-                <small>{task.lastdate}</small>
-              </div>
-              <p class="mb-1">{task.body}</p>
-              <div className="list-small">
-                <small>{task.num}</small>
-                <small>{task.progress}</small>
-              </div>
-            </li>
-          )
-        } else return
-      })}
-    </>
-    )
-  }
 
   const onClickAdd = () => {
     const nowDate = ( date = null ) => {
@@ -113,6 +46,38 @@ const App = () => {
     setBody('')
   }
 
+  const onClickComplete = index => {
+    const newTasks = [...tasks]
+    const newProgress = newTasks[index].progress
+    // eslint-disable-next-line
+    switch (newProgress) {
+      case '未完了':
+        const incompleteResult = window.confirm('このタスクは未完了のタスクです。完了に変更しますか？')
+        if (incompleteResult) {
+          newTasks[index].progress = '完了'
+          setTasks(newTasks)
+        }
+        break
+      case '完了':
+        const completeResult = window.confirm('このタスクは完了したタスクです。未完了に変更しますか？')
+        if (completeResult) {
+          newTasks[index].progress = '未完了'
+          setTasks(newTasks)
+        }
+        break
+    }
+  }
+
+  const deleteSingletask = (index) => {
+    const newTasks = [...tasks]
+    const newProgress = newTasks[index].progress
+    const deleteResult = window.confirm('このタスクを削除しますか？') 
+    if (deleteResult) {
+      newProgress.splice(index, 1)
+      setTasks(newTasks)
+    }
+  }
+
   const deleteAllTasks = () => {
     const result = window.confirm('全てのタスクを削除してもよろしいですか？')
     if (result) {
@@ -120,39 +85,9 @@ const App = () => {
       setTasks(newTasks)
     } 
   }
-  
-  
-  
+
   return (
     <>
-      <Tabs>
-        <TabList>
-          <Tab>ALL</Tab>
-          <Tab>INCOMPLETE</Tab>
-          <Tab>COMPLETE</Tab>
-        </TabList>
-        <TabPanel>
-        <div class="list-group">
-          <ul>
-          <AllTasks tasks={tasks} progress={progress}/>
-          </ul>
-        </div>
-        </TabPanel>
-        <TabPanel>
-          <div class="list-group">
-            <ul>
-              <IncompleteTasks tasks={tasks} progress={progress}/>
-            </ul>
-          </div>
-        </TabPanel>
-        <TabPanel>
-          <div class="list-group">
-            <ul>
-              <CompleteTasks tasks={tasks} progress={progress}/>
-            </ul>
-          </div>
-        </TabPanel>
-      </Tabs>
     <div className="App">
       <header className="App-header">
         <button className="btn btn-primary" onClick={() => setIsOpen(true)}>タスクを作成する</button>
@@ -193,7 +128,7 @@ const App = () => {
           </div>
         </div>
       </form>
-      <button className="btn btn-info" zIndex="11" disabled={unCreatable} onClick={onClickAdd}>作成</button>
+      <button className="btn btn-info" disabled={unCreatable} onClick={onClickAdd}>作成</button>
             <button onClick={() => setIsOpen(false)} className="btn btn-secondary">
               閉じる
             </button>
@@ -204,6 +139,39 @@ const App = () => {
         <button className="btn btn-danger" disabled={unDeletable} onClick={deleteAllTasks}>全てのタスクを削除する</button>
       </header>
     </div>
+      <Tabs>
+        <TabList>
+          <Tab>ALL</Tab>
+          <Tab>INCOMPLETE</Tab>
+          <Tab>COMPLETE</Tab>
+          <Tab color="red">DELETE</Tab>
+        </TabList>
+          {tasks.length === 0 && (<p>現在、登録されているタスクはありません</p>)}
+        <TabPanel>
+        <div className="list-group">
+          <ul>
+          <AllTasks tasks={tasks} progress={progress} title={title} onClickComplete={onClickComplete}/>
+          </ul>
+        </div>
+        </TabPanel>
+        <TabPanel>
+          <div className="list-group">
+            <ul>
+              <IncompleteTasks tasks={tasks} progress={progress} onClickComplete={onClickComplete}/>
+            </ul>
+          </div>
+        </TabPanel>
+        <TabPanel>
+          <div className="list-group">
+            <ul>
+              <CompleteTasks tasks={tasks} progress={progress} onClickComplete={onClickComplete}/>
+            </ul>
+          </div>
+        </TabPanel>
+        <TabPanel>
+          <DeleteMode tasks={tasks} progress={progress} deleteSingletask={deleteSingletask}/>
+        </TabPanel>
+      </Tabs>
     </>
   );
 }

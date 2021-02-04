@@ -14,3 +14,11 @@
   border-radius: 10px;
   border: 2px solid lightskyblue;
 }
+
+.on-click {
+  cursor: pointer;
+}
+
+.on-click:hover {
+  color: red;
+}
