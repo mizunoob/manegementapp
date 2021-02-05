@@ -1,27 +1,41 @@
 import React from 'react'
+import { Task } from './Task'
 
-export const IncompleteTasks = (props) => {
-  const { tasks, onClickComplete } = props
+export const IncompleteTasks = ({state, dispatch, task}) => {
+  const onClickComplete = index => {
+    const id = task.id
+    const newState = [...state]
+    const newProgress = newState[index].progress
+    // eslint-disable-next-line
+    switch (newProgress) {
+      case '未完了':
+        const incompleteResult = window.confirm('このタスクは未完了のタスクです。完了に変更しますか？')
+        if (incompleteResult) dispatch({ progress: '完了', id })
+        // {
+        //   newTasks[index].progress = '完了'
+        //   setTasks(newTasks)
+        // }
+        break
+      case '完了':
+        const completeResult = window.confirm('このタスクは完了したタスクです。未完了に変更しますか？')
+        if (completeResult) dispatch({ progress: '未完了', id })
+        // {
+        //   newTasks[index].progress = '未完了'
+        //   setTasks(newTasks)
+        // }
+        break
+    }
+  }
   return (
-    <>
-    {tasks.map((task, index) => {
+    <ul>
+    {state.map((task, index) => {
       if (task.progress === '未完了') {
         return (
-          <li href="#" className="list-group-item list-group-item-action flex-column align-items-start" key={task}>
-          <div className="d-flex w-100 justify-content-between">
-            <h5 className="mb-1">{task.title}</h5>
-            <small>{task.lastdate}</small>
-          </div>
-          <p className="mb-1">{task.body}</p>
-          <div className="list-small">
-            <small alt="業務No.">{task.num}</small>
-            <small onClick = {() => onClickComplete(index)} className="on-click">{task.progress}</small>
-          </div>
-        </li>
+          <Task onClick={() => onClickComplete(index)} key={index} task={task}/>
         )
         // eslint-disable-next-line
       } else return
     })}
-  </>
+  </ul>
   )
 }

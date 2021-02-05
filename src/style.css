@@ -10,7 +10,7 @@
 .RndStyle {
   background: lightcyan;
   padding: 20px;
-  z-index: 1;
+  z-index: 10;
   border-radius: 10px;
   border: 2px solid lightskyblue;
 }
