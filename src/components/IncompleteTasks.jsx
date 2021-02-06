@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Task } from './Task'
+import AppContext from '../contexts/AppContext'
 
-export const IncompleteTasks = ({state, dispatch, task}) => {
+export const IncompleteTasks = () => {
+  const { state, dispatch } = useContext(AppContext)
   return (
     <ul>
-    {state.map((task, index) => {
+    {Array.isArray(state) && state.map((task, index) => {
       if (task.progress === '未完了') {
         return (
           <Task key={index} task={task} state={state} dispatch={dispatch}/>

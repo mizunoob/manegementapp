@@ -24,16 +24,24 @@ const events = (state = [], action) => {
     case DELETE_ALL_EVENTS:
       return []
     case CHANGE_INCOMP_TO_COMP: // 未完了→完了
-      const incompEventID = action.id - 1
+      const Comp = {progress: '完了'}
+      Object.assign(
+        ...state,
+        Comp
+      )
       return (
         // console.log(state[incompEventID]) によってオブジェクトの取得は確認済み
-        state[incompEventID].progress = '完了'
+        [...state]
       )
     case CHANGE_COMP_TO_INCOMP: // 完了→未完了
-      const compEventID = action.id - 1
+      const Incomp = {progress: '未完了'}
+      Object.assign(
+        ...state,
+        Incomp
+      )
       return (
         // console.log(state[compEventID])
-        state[compEventID].progress = '未完了'
+        [...state]
       )
     default:
       return state

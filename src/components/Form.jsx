@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Rnd } from "react-rnd";
 import {
   CREATE_EVENT,
   DELETE_ALL_EVENTS
 } from '../actions'
+import AppContext from '../contexts/AppContext'
 
-export const Form = ({ state, dispatch }) => {
+export const Form = () => {
+  const { state, dispatch } = useContext(AppContext)
   const [ title, setTitle ] = useState('')
   const [ num, setNum ] = useState('')
   const [ body, setBody ] = useState('')

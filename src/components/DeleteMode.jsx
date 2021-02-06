@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Delete } from './Delete'
+import AppContext from '../contexts/AppContext'
 
-export const DeleteMode = ({ state, dispatch, task }) => {
+export const DeleteMode = () => {
+  const { state, dispatch } = useContext(AppContext)
+
   return (
     <>
-      {state.map((task, index) => {
+      {Array.isArray(state) && state.map((task, index) => {
         return (
           <div className="list-group">
             <ul>

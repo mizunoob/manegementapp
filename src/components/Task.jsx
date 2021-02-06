@@ -1,26 +1,27 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
   CHANGE_COMP_TO_INCOMP,
   CHANGE_INCOMP_TO_COMP,
 } from '../actions'
+import AppContext from '../contexts/AppContext'
 
-export const Task = ({ dispatch, task }) => {
+export const Task = ({ task }) => {
   // 以下の関数を使って完了⇄未完了の変更をできるようにしたい
   // 完了、未完了はprogressというプロパティで文字列として管理
   // dispatchの実行までは問題なし
+  const { dispatch } = useContext(AppContext)
   const onClickComplete = e => {
-    e.preventDefault()
     const id = task.id
     const Progress = task.progress
     // eslint-disable-next-line
     switch (Progress) {
       case '未完了':
         const incompleteResult = window.confirm('このタスクは未完了のタスクです。完了に変更しますか？')
-        if (incompleteResult) dispatch({ type:CHANGE_INCOMP_TO_COMP, id })
+        if (incompleteResult) dispatch({ type:CHANGE_INCOMP_TO_COMP, id})
         break
       case '完了':
         const completeResult = window.confirm('このタスクは完了したタスクです。未完了に変更しますか？')
-        if (completeResult) dispatch({ type:CHANGE_COMP_TO_INCOMP, id })
+        if (completeResult) dispatch({ type:CHANGE_COMP_TO_INCOMP, id})
         break
     }
   }
