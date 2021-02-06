@@ -1,0 +1,33 @@
+.list-small {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-group {
+  margin-bottom: 8px;
+}
+
+.RndStyle {
+  background: lightcyan;
+  padding: 20px;
+  z-index: 10;
+  border-radius: 10px;
+  border: 2px solid lightskyblue;
+}
+
+.on-click {
+  cursor: pointer;
+}
+
+.on-click:hover {
+  color: red;
+}
+
+.delete-message {
+  color: red;
+  font-weight: bold;
+}
+
+.delete-mode {
+  cursor: pointer;
+}
