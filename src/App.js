@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react'
+import React, { useReducer } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./style.css"
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -13,19 +13,8 @@ import { Form } from './components/Form'
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, [])
-  const [ progress, setProgress ] = useState('選択して下さい')
 
-  const [tasks, setTasks] = useState([])
-
-  const deleteSingletask = (index) => {
-    const newTasks = [...tasks]
-    const newProgress = newTasks[index].progress
-    const deleteResult = window.confirm('このタスクを削除しますか？') 
-    if (deleteResult) {
-      newProgress.splice(index, 1)
-      setTasks(newTasks)
-    }
-  }
+  const changeProgress = state.length !== 0 && (<p>「完了」または「未完了」をクリックすることでタスクの進捗を変更できます</p>)
 
   return (
     <>
@@ -37,11 +26,12 @@ const App = () => {
           <Tab>ALL</Tab>
           <Tab>INCOMPLETE</Tab>
           <Tab>COMPLETE</Tab>
-          <Tab color="red">DELETE</Tab>
+          <Tab color="red">DELETE MODE</Tab>
         </TabList>
-          {tasks.length === 0 && (<p>現在、登録されているタスクはありません</p>)}
+          {state.length === 0 && (<p>現在、登録されているタスクはありません</p>)}
         <TabPanel>
         <div className="list-group">
+          {changeProgress}
           <AllTasks
             state={state}
             dispatch={dispatch}
@@ -49,6 +39,7 @@ const App = () => {
         </div>
         </TabPanel>
         <TabPanel>
+          {changeProgress}
           <div className="list-group">
               <IncompleteTasks
                 state={state}
@@ -57,6 +48,7 @@ const App = () => {
           </div>
         </TabPanel>
         <TabPanel>
+          {changeProgress}
           <div className="list-group">
               <CompleteTasks
                 state={state}
@@ -65,7 +57,11 @@ const App = () => {
           </div>
         </TabPanel>
         <TabPanel>
-          <DeleteMode tasks={tasks} progress={progress} deleteSingletask={deleteSingletask}/>
+        {state.length !== 0 && (<p className="delete-message">　削除したいタスクのタイトルをクリックして下さい。</p>)}
+          <DeleteMode
+          state={state}
+          dispatch={dispatch}
+          />
         </TabPanel>
       </Tabs>
     </>

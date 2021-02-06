@@ -32,19 +32,6 @@ export const Form = ({ state, dispatch }) => {
       progress,
       lastdate: nowDate()
     })
-    // setTitle(title)
-    // setNum(num)
-    // setBody(body)
-    // setProgress(progress)
-    // console.log(title)
-    // const newTasks = [...tasks, {
-    //   lastdate: nowDate(),
-    //   title: title,
-    //   num: num,
-    //   body: body,
-    //   progress: progress
-    // }]
-    // setTasks(newTasks)
     setTitle('')
     setNum('')
     setBody('')
@@ -53,10 +40,6 @@ export const Form = ({ state, dispatch }) => {
   const deleteAllTasks = () => {
     const result = window.confirm('全てのタスクを削除してもよろしいですか？')
     if (result) dispatch ({ type: DELETE_ALL_EVENTS })
-    // {
-    //   const newTasks = []
-    //   setTasks(newTasks)
-    // } 
   }
 
   return (
@@ -76,17 +59,17 @@ export const Form = ({ state, dispatch }) => {
     <form>
       <div className="form-window">
         <div className="form-group">
-          <label htmlFor="formEventTitle">業務名</label>
+          <label htmlFor="formEventTitle">タスク名</label>
           <input className="form-control" id="formEventTitle" value={title} onChange={e => setTitle(e.target.value)}/>
         </div>
 
         <div className="form-group">
-          <label htmlFor="formEventNum">業務No.</label>
+          <label htmlFor="formEventNum">タスクNo.</label>
           <input className="form-control" id="formEventNum" value={num} onChange={e => setNum(e.target.value)}/>
         </div>
 
         <div className="form-group">
-          <label htmlFor="formEventBody">業務内容</label>
+          <label htmlFor="formEventBody">タスク内容</label>
           <textarea className="form-control" id="formEventBody" value={body} onChange={e => setBody(e.target.value)}></textarea>
         </div>
 

@@ -22,3 +22,8 @@
 .on-click:hover {
   color: red;
 }
+
+.delete-message {
+  color: red;
+  font-weight: bold;
+}
