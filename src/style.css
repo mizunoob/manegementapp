@@ -31,3 +31,7 @@
 .delete-mode {
   cursor: pointer;
 }
+
+.delete-mode-tab {
+  color: red;
+}

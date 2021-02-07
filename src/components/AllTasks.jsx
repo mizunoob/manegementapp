@@ -6,7 +6,7 @@ export const AllTasks = () => {
   const { state, dispatch } = useContext(AppContext)
   return (
     <ul>
-      {Array.isArray(state) && state.map((task, index) => {
+      {Array.isArray(state.tasks) && state.tasks.map((task, index) => {
         return (
           <Task key={index} task={task} state={state} dispatch={dispatch}/>
         )

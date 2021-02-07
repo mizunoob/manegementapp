@@ -1,47 +1,66 @@
 import React, { useContext, useState } from 'react'
 import { Rnd } from "react-rnd";
 import {
-  CREATE_EVENT,
-  DELETE_ALL_EVENTS
+  CREATE_TASK,
+  DELETE_ALL_TASKS,
+  ADD_OPERATION_LOG,
+  DELETE_ALL_OPERATION_LOGS
 } from '../actions'
 import AppContext from '../contexts/AppContext'
+import { timeCurrentIso8601 } from '../utils'
 
 export const Form = () => {
   const { state, dispatch } = useContext(AppContext)
   const [ title, setTitle ] = useState('')
-  const [ num, setNum ] = useState('')
+  const [ name, setName ] = useState('')
   const [ body, setBody ] = useState('')
   const [ progress, setProgress ] = useState('選択して下さい')
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const unCreatable = title === '' || body === '' || progress === '選択して下さい'
-  const unDeletable = state.length === 0
+  const unCreatable = !title.trim() || !body.trim() || progress === '選択して下さい' || !name.trim()
+  const unDeletableTask = state.tasks.length === 0
+  const unDeletableLog = state.operationLogs.length === 0
 
   const onClickAdd = e => {
     e.preventDefault()
-
-    const nowDate = ( date = null ) => {
-      const now = date instanceof Date ? date : new Date();
-      const youbi = ["日","月","火","水","木","金","土"];
-      return `${ now.getFullYear() }/${ now.getMonth() + 1 }/${ now.getDate()  }(${ youbi[now.getDay()] })`
-  };
     dispatch({
-      type: CREATE_EVENT,
+      type: CREATE_TASK,
       title,
-      num,
+      name,
       body,
-      progress,
-      lastdate: nowDate()
+      progress
+    })
+
+    dispatch({
+      type: ADD_OPERATION_LOG,
+      description: `タスク"${title}"を作成しました。`,
+      operetedAt: `${timeCurrentIso8601()}`
     })
     setTitle('')
-    setNum('')
+    setName('')
     setBody('')
   }
 
-  const deleteAllTasks = () => {
+  const deleteAllTasks = e => {
+    e.preventDefault()
     const result = window.confirm('全てのタスクを削除してもよろしいですか？')
-    if (result) dispatch ({ type: DELETE_ALL_EVENTS })
+    if (result) {
+      dispatch({ type: DELETE_ALL_TASKS })
+      dispatch({
+        type: ADD_OPERATION_LOG,
+        description: '全てのタスクを削除しました。',
+        operetedAt: `${timeCurrentIso8601()}`
+      })
+    }
+  }
+
+  const deleteAllOperationLogs = e => {
+    e.preventDefault()
+    const result = window.confirm('全ての操作ログを削除してもよろしいですか？')
+    if (result) {
+      dispatch({ type: DELETE_ALL_OPERATION_LOGS })
+    }
   }
 
   return (
@@ -66,8 +85,8 @@ export const Form = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="formEventNum">タスクNo.</label>
-          <input className="form-control" id="formEventNum" value={num} onChange={e => setNum(e.target.value)}/>
+          <label htmlFor="formEventName">作成者</label>
+          <input className="form-control" id="formEventName" value={name} onChange={e => setName(e.target.value)}/>
         </div>
 
         <div className="form-group">
@@ -99,7 +118,8 @@ export const Form = () => {
     ) : (
       <></>
     )}
-    <button className="btn btn-danger" disabled={unDeletable} onClick={deleteAllTasks}>全てのタスクを削除する</button>
+    <button className="btn btn-danger" disabled={unDeletableTask} onClick={deleteAllTasks}>全てのタスクを削除する</button>
+    <button className="btn btn-danger" disabled={unDeletableLog} onClick={deleteAllOperationLogs}>全ての操作ログを削除する</button>
   </header>
 </div>
   )

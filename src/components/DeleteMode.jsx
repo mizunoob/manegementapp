@@ -7,7 +7,7 @@ export const DeleteMode = () => {
 
   return (
     <>
-      {Array.isArray(state) && state.map((task, index) => {
+      {Array.isArray(state.tasks) && state.tasks.map((task, index) => {
         return (
           <div className="list-group">
             <ul>

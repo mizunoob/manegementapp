@@ -1,6 +1,10 @@
 import React, { useContext } from 'react'
-import { DELETE_EVENT } from '../actions'
+import {
+  ADD_OPERATION_LOG,
+  DELETE_TASK
+} from '../actions'
 import AppContext from '../contexts/AppContext'
+import { timeCurrentIso8601 } from '../utils'
 
 export const Delete = ({ task }) => {
   const { dispatch } = useContext(AppContext)
@@ -8,7 +12,14 @@ export const Delete = ({ task }) => {
   const deleteTask = () => {
     const id = task.id
     const deleteResult = window.confirm('このタスクを削除しますか？') 
-    if (deleteResult) dispatch({ type:DELETE_EVENT, id })
+    if (deleteResult) {
+      dispatch({ type:DELETE_TASK, id })
+      dispatch({
+        type: ADD_OPERATION_LOG,
+        description: `タスク"${task.title}"を削除しました。`,
+        operatedAt: `${timeCurrentIso8601()}`
+      })
+    }
   }
 
   return (
@@ -20,7 +31,7 @@ export const Delete = ({ task }) => {
         </div>
         <p className="mb-1">{task.body}</p>
         <div className="list-small">
-          <small>{task.num}</small>
+          <small>作成者：{task.name}</small>
           <small>{task.progress}</small>
         </div>
       </div>

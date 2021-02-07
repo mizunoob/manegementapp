@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import {
   CHANGE_COMP_TO_INCOMP,
-  CHANGE_INCOMP_TO_COMP,
+  CHANGE_INCOMP_TO_COMP
 } from '../actions'
 import AppContext from '../contexts/AppContext'
 
@@ -35,7 +35,7 @@ export const Task = ({ task }) => {
     </div>
     <p className="mb-1">{task.body}</p>
     <div className="list-small">
-      <small alt="業務No.">{task.num}</small>
+      <small alt="業務No.">作成者：{task.name}</small>
       <small className="on-click" onClick={onClickComplete}>{task.progress}</small>
     </div>
   </li>
