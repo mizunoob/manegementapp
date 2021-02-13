@@ -66,13 +66,13 @@ export const Form = () => {
   return (
   <div className="App">
       <header className="App-header">
-        <button className="btn btn-primary" onClick={() => setIsOpen(true)}>タスクを作成する</button>
+        <button className="btn btn-tag btn-tag--bookmark" onClick={() => setIsOpen(true)}><i class="fas fa-folder-plus"></i>タスクを作成</button>
         {isOpen ? (
           <Rnd
             className="RndStyle"
             default={{
-              x: 300,
-              y: 50,
+              x: -500,
+              y: 100,
               width: 800,
               minHeight: 300
             }}
@@ -118,8 +118,8 @@ export const Form = () => {
     ) : (
       <></>
     )}
-    <button className="btn btn-danger" disabled={unDeletableTask} onClick={deleteAllTasks}>全てのタスクを削除する</button>
-    <button className="btn btn-danger" disabled={unDeletableLog} onClick={deleteAllOperationLogs}>全ての操作ログを削除する</button>
+    <button className="btn btn-tag deletebtn-tag--bookmark" disabled={unDeletableTask} onClick={deleteAllTasks}><i class="fas fa-folder-minus"></i>全てのタスクを削除</button>
+    <button className="btn btn-tag deletebtn-tag--bookmark" disabled={unDeletableLog} onClick={deleteAllOperationLogs}><i class="fas fa-ban"></i>全ての操作ログを削除</button>
   </header>
 </div>
   )

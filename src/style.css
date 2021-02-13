@@ -1,3 +1,39 @@
+@import "https://use.fontawesome.com/releases/v5.13.0/css/all.css";
+
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+.inner {
+  font-size: 1.6rem;
+  width: 100%;
+  min-height: 100rem;
+  padding-top: 3rem;
+  margin-right: 5rem;
+}
+
+.outer {
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  text-align: left;
+  width: 30%;
+  color: #fff;
+  font-size: 80px;
+  letter-spacing: 5px;
+  top: 50%;
+  margin-top: -40px;
+  text-shadow: -1px -1px 0px #2196f3, 3px 3px 0px #2196f3, 6px 6px 0px #0d47a1;
+  user-select: none;
+}
+
 .list-small {
   display: flex;
   justify-content: space-between;
@@ -8,7 +44,7 @@
 }
 
 .RndStyle {
-  background: lightcyan;
+  background-color: lightcyan;
   padding: 20px;
   z-index: 10;
   border-radius: 10px;
@@ -26,6 +62,7 @@
 .delete-message {
   color: red;
   font-weight: bold;
+  margin-left: 20px;
 }
 
 .delete-mode {
@@ -34,4 +71,130 @@
 
 .delete-mode-tab {
   color: red;
+}
+
+.App-header {
+  display: flex;
+}
+
+/* button */
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+.btn,
+button.btn {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+
+button.btn-tag {
+  position: relative;
+  padding: 1.25rem 3rem 1.25rem 80px;
+  color: #000;
+}
+
+button.btn-tag:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 5rem;
+  height: 100%;
+
+  content: "";
+
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+button.btn-tag--bookmark {
+  background-color: #e5e5e5;
+}
+
+button.btn-tag--bookmark:before {
+  background-color: #2196f3;
+}
+
+button.btn-tag--bookmark i {
+  font-size: 125%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 50px;
+  padding: 1.5rem 0;
+
+  text-align: center;
+  letter-spacing: 0;
+
+  opacity: 0.5;
+  color: #fff;
+}
+
+button.btn-tag--bookmark:hover {
+  color: #212529;
+  background-color: #f2f2f2;
+}
+
+button.btn-tag--bookmark:hover i {
+  opacity: 1;
+  color: #fff100;
+}
+
+/* 削除ボタン用 */
+
+button.deletebtn-tag--bookmark {
+  background-color: #e5e5e5;
+}
+
+button.deletebtn-tag--bookmark:before {
+  background-color: rgb(250, 57, 57);
+}
+
+button.deletebtn-tag--bookmark i {
+  font-size: 125%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 50px;
+  padding: 1.5rem 0;
+
+  text-align: center;
+  letter-spacing: 0;
+
+  opacity: 0.5;
+  color: #fff;
+}
+
+button.deletebtn-tag--bookmark:hover {
+  color: #212529;
+  background-color: #f2f2f2;
+}
+
+button.deletebtn-tag--bookmark:hover i {
+  opacity: 1;
+  color: #fff100;
 }
