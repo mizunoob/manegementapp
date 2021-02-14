@@ -1,81 +1,3 @@
-.ham-wrap {
-  display: none;
-  @include tab {
-    margin: 0;
-    display: flex;
-    font-size: 2rem;
-    min-height: 100vh;
-  }
-}
-
-.sp-form {
-  display: none;
-  @include tab {
-    display: block;
-    width: 75%;
-    margin: 0 auto;
-  }
-  @include sp {
-    width: 90%;
-  }
-}
-
-aside {
-  width: 30%;
-  min-width: 250px;
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  left: -400px;
-  height: 100%;
-  transition: all 0.2s;
-  background: #ffffff;
-  z-index: 10;
-  @include tab {
-    width: 40%;
-  }
-  @include sp {
-    width: 60%;
-  }
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.side-footer {
-  margin-top: auto;
-  height: 300px;
-}
-
-input[type="checkbox"] {
-  position: absolute;
-  left: -80vw;
-}
-
-.open,
-.close {
-    display: block;
-}
-
-.open {
-    position: absolute;
-}
-
-input[type="checkbox"]:checked ~ aside {
-    left: 0;
-}
-
-input[type="checkbox"]:checked ~ .back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 8;
-    background: rgba(0, 0, 0, 0.8) !important;
-}
-
 @include tab {
   .react-tabs__tab-list {
     display: flex;
@@ -115,26 +37,103 @@ input[type="checkbox"]:checked ~ .back {
   }
 
   .scroll-nav ul li {
-    // float: left;
     text-align: center;
     line-height: 1.8rem;
-  }
-
-  .next-btn { /* 右側に固定する部分 */
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 25px; /* 固定部分の幅 */
-    height: 40px; /* メニューの高さに合わせる */
-    line-height: 40px;
-    color: #555;
-  }
-
-  .scroll-nav ul li {
-    // width: 14.2%; /* メニューの個別の幅 */
   }
 
   .next-btn {
     display: none; /* 右側の固定部分を非表示 */
   }
 }
+
+.next-btn {
+  display: none;
+    @include tab {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 25px; /* 固定部分の幅 */
+      height: 40px; /* メニューの高さに合わせる */
+      line-height: 40px;
+      color: #555;
+    }
+  }
+
+  .ham-wrap {
+    display: none;
+    @include tab {
+      margin: 0;
+      display: flex;
+      font-size: 2rem;
+      min-height: 100vh;
+    }
+  }
+  
+  .sp-form {
+    display: none;
+    @include tab {
+      display: block;
+      width: 75%;
+      margin: 0 auto;
+    }
+    @include sp {
+      width: 90%;
+    }
+  }
+  
+  aside {
+    width: 30%;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: -400px;
+    height: 100%;
+    transition: all 0.2s;
+    background: #ffffff;
+    z-index: 10;
+    @include tab {
+      width: 40%;
+    }
+    @include sp {
+      width: 60%;
+    }
+  }
+  
+  // ul {
+  //   list-style: none;
+  //   padding: 0;
+  //   margin: 0;
+  // }
+  
+  // .side-footer {
+  //   margin-top: auto;
+  //   height: 300px;
+  // }
+  
+  // input[type="checkbox"] {
+  //   position: absolute;
+  //   left: -80vw;
+  // }
+  
+  // .open,
+  // .close {
+  //     display: block;
+  // }
+  
+  // .open {
+  //     position: absolute;
+  // }
+  
+  // input[type="checkbox"]:checked ~ aside {
+  //     left: 0;
+  // }
+  
+  // input[type="checkbox"]:checked ~ .back {
+  //     position: absolute;
+  //     width: 100%;
+  //     height: 100%;
+  //     z-index: 8;
+  //     background: rgba(0, 0, 0, 0.8) !important;
+  // }

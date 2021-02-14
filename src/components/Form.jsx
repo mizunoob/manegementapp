@@ -42,7 +42,7 @@ export const Form = () => {
     dispatch({
       type: ADD_OPERATION_LOG,
       description: `タスク"${title}"を作成しました。`,
-      operetedAt: `${timeCurrentIso8601()}`
+      operatedAt: `${timeCurrentIso8601()}`
     })
     setTitle('')
     setName('')
@@ -57,7 +57,7 @@ export const Form = () => {
       dispatch({
         type: ADD_OPERATION_LOG,
         description: '全てのタスクを削除しました。',
-        operetedAt: `${timeCurrentIso8601()}`
+        operatedAt: `${timeCurrentIso8601()}`
       })
     }
   }

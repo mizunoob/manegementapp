@@ -1,0 +1,14 @@
+.item-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete-icon {
+  margin-right: 1.2rem;
+  color: red;
+  font-size: 100%;
+  cursor: pointer;
+  &:hover {
+    font-size: 110%;
+  }
+}

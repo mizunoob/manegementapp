@@ -1,14 +1,15 @@
 import React, { useContext } from 'react'
 import {
   CHANGE_COMP_TO_INCOMP,
-  CHANGE_INCOMP_TO_COMP
+  CHANGE_INCOMP_TO_COMP,
+  ADD_OPERATION_LOG,
+  DELETE_TASK
 } from '../actions'
 import AppContext from '../contexts/AppContext'
+import { timeCurrentIso8601 } from '../utils'
 
 export const Task = ({ task }) => {
-  // 以下の関数を使って完了⇄未完了の変更をできるようにしたい
-  // 完了、未完了はprogressというプロパティで文字列として管理
-  // dispatchの実行までは問題なし
+
   const { dispatch } = useContext(AppContext)
   const onClickComplete = e => {
     const id = task.id
@@ -26,6 +27,18 @@ export const Task = ({ task }) => {
     }
   }
 
+  const deleteTask = () => {
+    const id = task.id
+    const deleteResult = window.confirm('このタスクを削除しますか？') 
+    if (deleteResult) {
+      dispatch({ type:DELETE_TASK, id })
+      dispatch({
+        type: ADD_OPERATION_LOG,
+        description: `タスク"${task.title}"を削除しました。`,
+        operatedAt: `${timeCurrentIso8601()}`
+      })
+    }
+  }
 
   return (
     <li href="#" className="list-group-item list-group-item-action flex-column align-items-start">
@@ -33,7 +46,12 @@ export const Task = ({ task }) => {
       <h5 className="mb-1">{task.title}</h5>
       <small>{task.lastdate}</small>
     </div>
-    <p className="mb-1">{task.body}</p>
+    <div className="item-body">
+      <p className="mb-1">{task.body}</p>
+      <span className="delete-icon" onClick={deleteTask}>
+        <i class="fas fa-folder-minus"></i>
+      </span>
+    </div>
     <div className="list-small">
       <small alt="業務No.">作成者：{task.name}</small>
       <small className="on-click" onClick={onClickComplete}>{task.progress}</small>
