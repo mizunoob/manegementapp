@@ -1,0 +1,93 @@
+/////mixin/////
+@mixin pc {
+  @media screen and (min-width: 960px) {
+    @content;    
+  }
+}
+@mixin tab {
+  @media screen and (max-width:959px) {
+    @content;
+  }  
+}
+@mixin sp {
+  @media screen and (max-width: 600px) {
+    @content;
+  }
+}
+
+/////common/////
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+form {
+  font-size: 1.6rem;
+}
+
+.inner {
+  font-size: 1.6rem;
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 1rem;
+  margin-right: 5rem;
+}
+
+.outer {
+}
+
+
+.list-small {
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-group-item {
+  font-size: 120%;
+}
+
+.form-group {
+  margin-bottom: 8px;
+}
+
+.form-control {
+  font-size: 1.6rem;
+}
+
+.RndStyle {
+  background-color: lightcyan;
+  padding: 20px;
+  z-index: 10;
+  border-radius: 10px;
+  border: 2px solid lightskyblue;
+  @include tab {
+    display: none;
+  }
+}
+
+.on-click {
+  cursor: pointer;
+}
+
+.on-click:hover {
+  color: red;
+}
+
+.delete-message {
+  color: red;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.delete-mode {
+  cursor: pointer;
+}
+
+.delete-mode-tab {
+  color: red;
+}
+
+.App-header {
+  display: flex;
+}

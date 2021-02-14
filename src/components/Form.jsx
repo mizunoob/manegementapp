@@ -8,6 +8,7 @@ import {
 } from '../actions'
 import AppContext from '../contexts/AppContext'
 import { timeCurrentIso8601 } from '../utils'
+import FormItem from './FormItem'
 
 export const Form = () => {
   const { state, dispatch } = useContext(AppContext)
@@ -17,11 +18,17 @@ export const Form = () => {
   const [ progress, setProgress ] = useState('選択して下さい')
 
   const [isOpen, setIsOpen] = useState(false);
+  const [spOpen, setSpOpen] = useState(false);
 
   const unCreatable = !title.trim() || !body.trim() || progress === '選択して下さい' || !name.trim()
   const unDeletableTask = state.tasks.length === 0
   const unDeletableLog = state.operationLogs.length === 0
 
+  const onChangeTitle = text => setTitle(text)
+  const onChangeName = text => setName(text)
+  const onChangeBody = text => setBody(text)
+  const onChangeProgress = text => setProgress(text)
+  
   const onClickAdd = e => {
     e.preventDefault()
     dispatch({
@@ -65,7 +72,6 @@ export const Form = () => {
 
   return (
   <div className="App">
-      <header className="App-header">
         <button className="btn btn-tag btn-tag--bookmark" onClick={() => setIsOpen(true)}><i class="fas fa-folder-plus"></i>タスクを作成</button>
         {isOpen ? (
           <Rnd
@@ -77,50 +83,56 @@ export const Form = () => {
               minHeight: 300
             }}
           >
-    <form>
-      <div className="form-window">
-        <div className="form-group">
-          <label htmlFor="formEventTitle">タスク名</label>
-          <input className="form-control" id="formEventTitle" value={title} onChange={e => setTitle(e.target.value)}/>
-        </div>
+    <FormItem
+      title={title}
+      name={name}
+      body={body}
+      progress={progress}
+      onChangeTitle={e => onChangeTitle(e)}
+      onChangeName={e => onChangeName(e)}
+      onChangeBody={e => onChangeBody(e)}
+      onChangeProgress={e => onChangeProgress(e)}
+    />
+      <button
+      className="btn btn-info"
+      disabled={unCreatable}
+      onClick={onClickAdd}
+      >
 
-        <div className="form-group">
-          <label htmlFor="formEventName">作成者</label>
-          <input className="form-control" id="formEventName" value={name} onChange={e => setName(e.target.value)}/>
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="formEventBody">タスク内容</label>
-          <textarea className="form-control" id="formEventBody" value={body} onChange={e => setBody(e.target.value)}></textarea>
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="formEventPnrogress">進捗</label>
-          <select className="form-control form-control-sm" id="formEventProgress" value={progress} onChange={e => setProgress(e.target.value)}>
-            <option>選択して下さい</option>
-            <option>未完了</option>
-            <option>完了</option>
-          </select>
-        </div>
-      </div>
-    </form>
-    <button
-    className="btn btn-info"
-    disabled={unCreatable}
-    onClick={onClickAdd}
-    >
-      作成
-    </button>
-            <button onClick={() => setIsOpen(false)} className="btn btn-secondary">
-              閉じる
-            </button>
+        作成
+      </button>
+      <button onClick={() => setIsOpen(false)} className="btn btn-secondary">
+        閉じる
+      </button>
     </Rnd>
     ) : (
       <></>
     )}
+    <button className="btn btn-tag spbtn-tag--bookmark" onClick={() => setSpOpen(!spOpen)}><i class="fas fa-folder-plus"></i>タスクを作成</button>
+    <div className="sp-form" style ={{display: spOpen ? "block" : "none"}}>
+      <FormItem
+        title={title}
+        name={name}
+        body={body}
+        progress={progress}
+        onChangeTitle={e => onChangeTitle(e)}
+        onChangeName={e => onChangeName(e)}
+        onChangeBody={e => onChangeBody(e)}
+        onChangeProgress={e => onChangeProgress(e)}
+      />
+      <button
+      className="btn btn-info"
+      disabled={unCreatable}
+      onClick={onClickAdd}
+      >
+        作成
+      </button>
+      <button onClick={() => setSpOpen(false)} className="btn btn-secondary">
+        閉じる
+      </button>
+    </div>
     <button className="btn btn-tag deletebtn-tag--bookmark" disabled={unDeletableTask} onClick={deleteAllTasks}><i class="fas fa-folder-minus"></i>全てのタスクを削除</button>
     <button className="btn btn-tag deletebtn-tag--bookmark" disabled={unDeletableLog} onClick={deleteAllOperationLogs}><i class="fas fa-ban"></i>全ての操作ログを削除</button>
-  </header>
 </div>
   )
 }

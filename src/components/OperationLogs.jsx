@@ -6,7 +6,7 @@ export const OperationLogs = () => {
   const { state } = useContext(AppContext)
   return(
     <>
-      <h4>操作ログ一覧</h4>
+      <h2>操作ログ一覧</h2>
       <ul>
       {Array.isArray(state.operationLogs) && state.operationLogs.map((operationLog, index) => {
         return (

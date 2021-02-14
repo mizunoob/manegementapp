@@ -1,0 +1,140 @@
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+.btn,
+button.btn {
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+
+button.btn-tag {
+  position: relative;
+  padding: 1.0rem 1.0rem 1.0rem 52px;
+  color: #000;
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+  
+    width: 4rem;
+    height: 100%;
+  
+    content: "";
+  
+    border-radius: 0.5rem 0 0 0.5rem;
+  }
+}
+
+button.btn-tag--bookmark {
+  background-color: #ddd;
+  @include tab {
+    display: none;
+  }
+  &::before {
+    background-color: #2196f3;
+  }
+  &:hover {
+    color: #212529;
+    background-color: #f2f2f2;
+    i {
+      opacity: 1;
+      color: #fff100;
+    }
+  }
+}
+
+
+button.btn-tag--bookmark i,
+button.deletebtn-tag--bookmark i,
+button.spbtn-tag--bookmark i {
+  font-size: 150%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 40px;
+  padding: 1.0rem 0;
+
+  text-align: center;
+  letter-spacing: 0;
+
+  opacity: 0.5;
+  color: #fff;
+}
+
+/* 削除ボタン用 */
+
+button.deletebtn-tag--bookmark {
+  background-color: #ddd;
+  &::before {
+    background-color: rgb(250, 57, 57);
+  }
+  &:hover {
+    color: #212529;
+    background-color: #f2f2f2;
+    i {
+      opacity: 1;
+      color: #fff100;
+    }
+  }
+  @include tab {
+    width: 75%;
+    margin: 0.5rem auto;
+  }
+  @include sp {
+    width: 90%;
+  }
+}
+
+// レスポンシブ作成ボタン
+
+button.spbtn-tag--bookmark {
+  display: none;
+  @include tab {
+    width: 75%;
+    display: block;
+    background-color: #ddd;
+    margin: 0.5rem auto;
+    &::before {
+      background-color: #2196f3;
+    }
+    &:hover {
+      color: #212529;
+      background-color: #f2f2f2;
+      i {
+        opacity: 1;
+        color: #fff100;
+      }
+    }
+  }
+  @include sp {
+    width: 90%;
+  }
+}
+
+// フォーム用
+.btn.btn-secondary, .btn.btn-info {
+  font-size: 1.6rem;
+}

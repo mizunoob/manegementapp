@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  @include tab {
+    flex-direction: column;
+  }
+}
+
+.title {
+  text-align: left;
+  width: 30%;
+  color: #fff;
+  font-size: 6rem;
+  letter-spacing: 5px;
+  top: 50%;
+  text-shadow: -1px -1px 0px #2196f3, 3px 3px 0px #2196f3, 6px 6px 0px #0d47a1;
+  user-select: none;
+}
+
+.App {
+  margin: auto 0;
+  @include tab {
+    display: flex;
+    flex-direction: column;
+  }
+}
