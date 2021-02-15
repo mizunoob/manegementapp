@@ -129,7 +129,8 @@ button.btn-tag--bookmark:hover i {
 
 button.btn-tag--bookmark i,
 button.deletebtn-tag--bookmark i,
-button.spbtn-tag--bookmark i {
+button.spbtn-tag--bookmark i,
+button.signup-btn-tag--bookmark i {
   font-size: 150%;
   position: absolute;
   top: 0;
@@ -201,14 +202,36 @@ button.spbtn-tag--bookmark {
   font-size: 1.6rem;
 }
 
+button.signup-btn-tag--bookmark {
+  background-color: #ddd;
+}
+button.signup-btn-tag--bookmark::before {
+  background-color: #4acf60;
+}
+button.signup-btn-tag--bookmark:hover {
+  color: #212529;
+  background-color: #f2f2f2;
+}
+button.signup-btn-tag--bookmark:hover i {
+  opacity: 1;
+  color: #fff100;
+}
+@media screen and (max-width: 959px) {
+  button.signup-btn-tag--bookmark {
+    width: 75%;
+    margin: 0.5rem auto;
+  }
+}
+@media screen and (max-width: 600px) {
+  button.signup-btn-tag--bookmark {
+    width: 90%;
+  }
+}
+
 .header {
   display: flex;
   justify-content: space-between;
-}
-@media screen and (max-width: 959px) {
-  .header {
-    flex-direction: column;
-  }
+  flex-direction: column;
 }
 
 .title {
@@ -221,15 +244,83 @@ button.spbtn-tag--bookmark {
   text-shadow: -1px -1px 0px #2196f3, 3px 3px 0px #2196f3, 6px 6px 0px #0d47a1;
   user-select: none;
 }
+@media screen and (max-width: 374px) {
+  .title {
+    font-size: 4.5rem;
+  }
+}
 
 .App {
   margin: auto 0;
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (min-width: 960px) {
+  .App {
+    position: absolute;
+    z-index: 15;
+    top: 6.2rem;
+    right: 2.5rem;
+  }
+}
+
+.isformOpen {
+  margin: auto 0;
+  margin-right: 7rem;
 }
 @media screen and (max-width: 959px) {
-  .App {
-    display: flex;
-    flex-direction: column;
+  .isformOpen {
+    margin-right: 0;
   }
+}
+
+.welcome {
+  font-size: 1.6rem;
+  line-height: 1.6rem;
+  text-align: left;
+  padding-left: 1.6rem;
+}
+
+.hamburger-bars {
+  font-size: 2.5rem;
+  position: absolute;
+  top: 3rem;
+  right: 2rem;
+  cursor: pointer;
+}
+.hamburger-bars:hover .fa-bars {
+  display: none;
+}
+.hamburger-bars:hover .fa-hamburger {
+  padding-top: 0.5rem;
+  display: block;
+}
+.hamburger-bars .fa-hamburger {
+  display: none;
+}
+@media screen and (max-width: 374px) {
+  .hamburger-bars {
+    font-size: 2rem;
+    top: 3rem;
+  }
+}
+
+.hamburger-wrap {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.item-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete-icon {
+  margin-right: 1rem;
+  color: red;
+  font-size: 100%;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 959px) {
@@ -262,7 +353,7 @@ button.spbtn-tag--bookmark {
   .scroll-nav ul {
     max-width: 1060px;
     /* メニューの最大幅 */
-    min-width: 770px;
+    min-width: 600px;
     /* メニューの最小幅 */
     height: 40px;
     line-height: 40px;
@@ -325,44 +416,6 @@ button.spbtn-tag--bookmark {
   .sp-form {
     width: 90%;
   }
-}
-
-aside {
-  width: 30%;
-  min-width: 250px;
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  left: -400px;
-  height: 100%;
-  transition: all 0.2s;
-  background: #ffffff;
-  z-index: 10;
-}
-@media screen and (max-width: 959px) {
-  aside {
-    width: 40%;
-  }
-}
-@media screen and (max-width: 600px) {
-  aside {
-    width: 60%;
-  }
-}
-
-.item-body {
-  display: flex;
-  justify-content: space-between;
-}
-
-.delete-icon {
-  margin-right: 1.2rem;
-  color: red;
-  font-size: 100%;
-  cursor: pointer;
-}
-.delete-icon:hover {
-  font-size: 110%;
 }
 
 /*# sourceMappingURL=main.css.map */

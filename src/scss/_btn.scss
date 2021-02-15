@@ -67,7 +67,8 @@ button.btn-tag--bookmark {
 
 button.btn-tag--bookmark i,
 button.deletebtn-tag--bookmark i,
-button.spbtn-tag--bookmark i {
+button.spbtn-tag--bookmark i,
+button.signup-btn-tag--bookmark i {
   font-size: 150%;
 
   position: absolute;
@@ -108,7 +109,7 @@ button.deletebtn-tag--bookmark {
   }
 }
 
-// レスポンシブ作成ボタン
+// レスポンシブ 作成ボタン
 
 button.spbtn-tag--bookmark {
   display: none;
@@ -137,4 +138,28 @@ button.spbtn-tag--bookmark {
 // フォーム用
 .btn.btn-secondary, .btn.btn-info {
   font-size: 1.6rem;
+}
+
+
+// サインアップ用
+button.signup-btn-tag--bookmark {
+  background-color: #ddd;
+  &::before {
+    background-color: rgb(74, 207, 96);
+  }
+  &:hover {
+    color: #212529;
+    background-color: #f2f2f2;
+    i {
+      opacity: 1;
+      color: #fff100;
+    }
+  }
+  @include tab {
+    width: 75%;
+    margin: 0.5rem auto;
+  }
+  @include sp {
+    width: 90%;
+  }
 }

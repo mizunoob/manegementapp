@@ -71,68 +71,70 @@ export const Form = () => {
   }
 
   return (
-  <div className="App">
-        <button className="btn btn-tag btn-tag--bookmark" onClick={() => setIsOpen(true)}><i class="fas fa-folder-plus"></i>タスクを作成</button>
-        {isOpen ? (
-          <Rnd
-            className="RndStyle"
-            default={{
-              x: -500,
-              y: 100,
-              width: 800,
-              minHeight: 300
-            }}
+  <>
+    <div className="App">
+      <button className="btn btn-tag btn-tag--bookmark" onClick={() => setIsOpen(true)}><i class="fas fa-folder-plus"></i>タスクを作成</button>
+      {isOpen ? (
+      <Rnd
+        className="RndStyle"
+        default={{
+          x: -500,
+          y: 100,
+          width: 800,
+          minHeight: 300
+        }}
+      >
+        <FormItem
+          title={title}
+          name={name}
+          body={body}
+          progress={progress}
+          onChangeTitle={e => onChangeTitle(e)}
+          onChangeName={e => onChangeName(e)}
+          onChangeBody={e => onChangeBody(e)}
+          onChangeProgress={e => onChangeProgress(e)}
+        />
+        <button
+        className="btn btn-info"
+        disabled={unCreatable}
+        onClick={onClickAdd}
+        >
+          作成
+        </button>
+        <button onClick={() => setIsOpen(false)} className="btn btn-secondary">
+          閉じる
+        </button>
+        </Rnd>
+        ) : (
+          <></>
+        )}
+        <button className="btn btn-tag spbtn-tag--bookmark" onClick={() => setSpOpen(!spOpen)}><i class="fas fa-folder-plus"></i>タスクを作成</button>
+        <div className="sp-form" style ={{display: spOpen ? "block" : "none"}}>
+          <FormItem
+            title={title}
+            name={name}
+            body={body}
+            progress={progress}
+            onChangeTitle={e => onChangeTitle(e)}
+            onChangeName={e => onChangeName(e)}
+            onChangeBody={e => onChangeBody(e)}
+            onChangeProgress={e => onChangeProgress(e)}
+          />
+          <button
+          className="btn btn-info"
+          disabled={unCreatable}
+          onClick={onClickAdd}
           >
-    <FormItem
-      title={title}
-      name={name}
-      body={body}
-      progress={progress}
-      onChangeTitle={e => onChangeTitle(e)}
-      onChangeName={e => onChangeName(e)}
-      onChangeBody={e => onChangeBody(e)}
-      onChangeProgress={e => onChangeProgress(e)}
-    />
-      <button
-      className="btn btn-info"
-      disabled={unCreatable}
-      onClick={onClickAdd}
-      >
-
-        作成
-      </button>
-      <button onClick={() => setIsOpen(false)} className="btn btn-secondary">
-        閉じる
-      </button>
-    </Rnd>
-    ) : (
-      <></>
-    )}
-    <button className="btn btn-tag spbtn-tag--bookmark" onClick={() => setSpOpen(!spOpen)}><i class="fas fa-folder-plus"></i>タスクを作成</button>
-    <div className="sp-form" style ={{display: spOpen ? "block" : "none"}}>
-      <FormItem
-        title={title}
-        name={name}
-        body={body}
-        progress={progress}
-        onChangeTitle={e => onChangeTitle(e)}
-        onChangeName={e => onChangeName(e)}
-        onChangeBody={e => onChangeBody(e)}
-        onChangeProgress={e => onChangeProgress(e)}
-      />
-      <button
-      className="btn btn-info"
-      disabled={unCreatable}
-      onClick={onClickAdd}
-      >
-        作成
-      </button>
-      <button onClick={() => setSpOpen(false)} className="btn btn-secondary">
-        閉じる
-      </button>
+            作成
+          </button>
+          <button onClick={() => setSpOpen(false)} className="btn btn-secondary">
+            閉じる
+          </button>
+        </div>
+        <button className="btn btn-tag deletebtn-tag--bookmark" disabled={unDeletableTask} onClick={deleteAllTasks}><i class="fas fa-folder-minus"></i>全てのタスクを削除</button>
+        <button className="btn btn-tag deletebtn-tag--bookmark" disabled={unDeletableLog} onClick={deleteAllOperationLogs}><i class="fas fa-ban"></i>全ての操作ログを削除</button>
+        <button className="btn btn-tag signup-btn-tag--bookmark" onClick={()=> alert("近日実装予定です！")}><i class="fas fa-user-plus"></i>サインアップ</button>
     </div>
-    <button className="btn btn-tag deletebtn-tag--bookmark" disabled={unDeletableTask} onClick={deleteAllTasks}><i class="fas fa-folder-minus"></i>全てのタスクを削除</button>
-    <button className="btn btn-tag deletebtn-tag--bookmark" disabled={unDeletableLog} onClick={deleteAllOperationLogs}><i class="fas fa-ban"></i>全ての操作ログを削除</button>
-</div>
+  </>
   )
 }

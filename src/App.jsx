@@ -1,11 +1,11 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./css/main.css"
 import 'react-tabs/style/react-tabs.css';
 import reducer from './reducer'
 import AppContext from './contexts/AppContext'
 
-import { Form } from './components/Form'
+import Hamburger from './components/Hamburger'
 import AllTabs from './components/AllTabs';
 
 const APP_KEY = 'appWithRedux'
@@ -25,11 +25,8 @@ const App = () => {
   return (
     <AppContext.Provider value={{ state, dispatch }}>
         <div className="inner">
-          <div className="header">
-            <h2 className="title">SmartTask</h2>
-            <Form />
-          </div>
-        <AllTabs />
+          <Hamburger />
+          <AllTabs />
         </div>
     </AppContext.Provider>
   );

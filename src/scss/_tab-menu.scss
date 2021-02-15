@@ -29,7 +29,7 @@
   }
   .scroll-nav ul {
     max-width: 1060px; /* メニューの最大幅 */
-    min-width: 770px; /* メニューの最小幅 */
+    min-width: 600px; /* メニューの最小幅 */
     height: 40px;
     line-height: 40px;
     margin: 0 auto;
@@ -82,24 +82,24 @@
     }
   }
   
-  aside {
-    width: 30%;
-    min-width: 250px;
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    left: -400px;
-    height: 100%;
-    transition: all 0.2s;
-    background: #ffffff;
-    z-index: 10;
-    @include tab {
-      width: 40%;
-    }
-    @include sp {
-      width: 60%;
-    }
-  }
+  // aside {
+  //   width: 30%;
+  //   min-width: 250px;
+  //   display: flex;
+  //   flex-direction: column;
+  //   position: absolute;
+  //   left: -400px;
+  //   height: 100%;
+  //   transition: all 0.2s;
+  //   background: #ffffff;
+  //   z-index: 10;
+  //   @include tab {
+  //     width: 40%;
+  //   }
+  //   @include sp {
+  //     width: 60%;
+  //   }
+  // }
   
   // ul {
   //   list-style: none;

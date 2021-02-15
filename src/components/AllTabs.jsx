@@ -5,6 +5,7 @@ import { AllTasks } from './AllTasks'
 import { IncompleteTasks } from './IncompleteTasks'
 import { CompleteTasks } from './CompleteTasks'
 import { OperationLogs } from './OperationLogs'
+import Status from './Status'
 
 import AppContext from '../contexts/AppContext'
 
@@ -23,6 +24,7 @@ const AllTabs = () => {
             <Tab>INCOMPLETE</Tab>
             <Tab>COMPLETE</Tab>
             <Tab>OPERATION LOG</Tab>
+            <Tab>STATUS</Tab>
           </TabList>
         </div>
         <div class="next-btn">＞</div>
@@ -51,6 +53,9 @@ const AllTabs = () => {
         <TabPanel>
           <OperationLogs />
           {state.operationLogs.length === 0 && (<p>現在、記録されている操作ログはありません</p>)}
+        </TabPanel>
+        <TabPanel>
+          <Status />
         </TabPanel>
       </Tabs>
     </>

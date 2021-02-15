@@ -1,9 +1,7 @@
 .header {
   display: flex;
   justify-content: space-between;
-  @include tab {
-    flex-direction: column;
-  }
+  flex-direction: column;
 }
 
 .title {
@@ -15,12 +13,66 @@
   top: 50%;
   text-shadow: -1px -1px 0px #2196f3, 3px 3px 0px #2196f3, 6px 6px 0px #0d47a1;
   user-select: none;
+  @include mini-sp {
+    font-size: 4.5rem;
+  }
 }
 
 .App {
   margin: auto 0;
-  @include tab {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  @include pc {
+    position: absolute;
+    z-index: 15;
+    top: 6.2rem;
+    right: 2.5rem;
   }
+}
+
+.isformOpen {
+  margin: auto 0;
+  margin-right: 7rem;
+  @include tab {
+    margin-right: 0;
+  }
+}
+
+.welcome {
+  font-size: 1.6rem;
+  line-height: 1.6rem;
+  text-align: left;
+  padding-left: 1.6rem;
+}
+
+
+//// ハンバーガー ////
+.hamburger-bars {
+  font-size: 2.5rem;
+  position: absolute;
+  top: 3rem;
+  right: 2rem;
+  cursor: pointer;
+  &:hover {
+    .fa-bars {
+      display: none;
+    }
+    .fa-hamburger {
+      padding-top: 0.5rem;
+      display: block;
+    }
+  }
+  .fa-hamburger {
+    display: none;
+  }
+  @include mini-sp {
+    font-size: 2rem;
+    top: 3rem;
+  }
+}
+
+.hamburger-wrap {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
