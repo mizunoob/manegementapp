@@ -8,19 +8,28 @@ import AppContext from './contexts/AppContext'
 import Hamburger from './components/Hamburger'
 import AllTabs from './components/AllTabs';
 
-const APP_KEY = 'appWithRedux'
+import { TASKS_FROM_DATABASE } from './actions'
+
+
+// const APP_KEY = 'appWithRedux'
 
 const App = () => {
-  const appState = localStorage.getItem(APP_KEY)
-  const initialState = appState ? JSON.parse(appState) : {
+  // const appState = localStorage.getItem(APP_KEY)
+  // const initialState = appState ? JSON.parse(appState) : {
+
+  const initialState = {
     tasks: [],
     operationLogs: []
   }
   const [state, dispatch] = useReducer(reducer, initialState)
 
+  // useEffect(() => {
+  //  localStorage.setItem(APP_KEY, JSON.stringify(state))
+  // }, [state])
+
   useEffect(() => {
-   localStorage.setItem(APP_KEY, JSON.stringify(state))
-  }, [state])
+    dispatch({ type: TASKS_FROM_DATABASE })
+  }, [])
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>

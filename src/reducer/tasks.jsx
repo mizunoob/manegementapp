@@ -3,8 +3,10 @@ import {
   DELETE_TASK,
   DELETE_ALL_TASKS,
   CHANGE_INCOMP_TO_COMP,
-  CHANGE_COMP_TO_INCOMP
+  CHANGE_COMP_TO_INCOMP,
+  TASKS_FROM_DATABASE
 } from '../actions'
+import { db } from "../firebase"
 
 const tasks = (state = [], action) => {
   const nowDate = ( date = null ) => {
@@ -46,6 +48,22 @@ const tasks = (state = [], action) => {
       return (
         [...state]
       )
+    case TASKS_FROM_DATABASE:
+      const newTasks = []
+      const databaseAdd = () => {
+        const unSub = db.collection("taskdata").onSnapshot((snapshot) => {
+          snapshot.docs.map((doc) => newTasks.push({
+            id: doc.id,
+            title: doc.data().title,
+            body: doc.data().body,
+            progress: doc.data().progress
+            })
+            )
+        })
+        return () => unSub()
+      }
+      databaseAdd()
+      return [...state, ...newTasks]
     default:
       return state
   }
