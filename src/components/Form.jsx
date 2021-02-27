@@ -9,9 +9,14 @@ import {
 import AppContext from '../contexts/AppContext'
 import { timeCurrentIso8601 } from '../utils'
 import FormItem from './FormItem'
+import { AuthContext } from '../contexts/AuthService'
+
+import firebase from '../firebase'
 
 export const Form = () => {
   const { state, dispatch } = useContext(AppContext)
+  const user = useContext(AuthContext)
+
   const [ title, setTitle ] = useState('')
   const [ name, setName ] = useState('')
   const [ body, setBody ] = useState('')
@@ -20,7 +25,7 @@ export const Form = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [spOpen, setSpOpen] = useState(false);
 
-  const unCreatable = !title.trim() || !body.trim() || progress === '選択して下さい' || !name.trim()
+  const unCreatable = !title.trim() || !body.trim() || progress === '選択して下さい'
   const unDeletableTask = state.tasks.length === 0
   const unDeletableLog = state.operationLogs.length === 0
 
@@ -34,18 +39,17 @@ export const Form = () => {
     dispatch({
       type: CREATE_TASK,
       title,
-      name,
+      name: user.displayName,
       body,
       progress
     })
 
     dispatch({
       type: ADD_OPERATION_LOG,
-      description: `タスク"${title}"を作成しました。`,
+      description: `${user.displayName}さんがタスク"${title}"を作成しました。`,
       operatedAt: `${timeCurrentIso8601()}`
     })
     setTitle('')
-    setName('')
     setBody('')
   }
 
@@ -56,7 +60,7 @@ export const Form = () => {
       dispatch({ type: DELETE_ALL_TASKS })
       dispatch({
         type: ADD_OPERATION_LOG,
-        description: '全てのタスクを削除しました。',
+        description: `${user.displayName}さんが全てのタスクを削除しました。`,
         operatedAt: `${timeCurrentIso8601()}`
       })
     }
@@ -86,7 +90,7 @@ export const Form = () => {
       >
         <FormItem
           title={title}
-          name={name}
+          name={user.displayName}
           body={body}
           progress={progress}
           onChangeTitle={e => onChangeTitle(e)}
@@ -133,7 +137,7 @@ export const Form = () => {
         </div>
         <button className="btn btn-tag deletebtn-tag--bookmark" disabled={unDeletableTask} onClick={deleteAllTasks}><i class="fas fa-folder-minus"></i>全てのタスクを削除</button>
         <button className="btn btn-tag deletebtn-tag--bookmark" disabled={unDeletableLog} onClick={deleteAllOperationLogs}><i class="fas fa-ban"></i>全ての操作ログを削除</button>
-        <button className="btn btn-tag signup-btn-tag--bookmark" onClick={()=> alert("近日実装予定です！")}><i class="fas fa-user-plus"></i>サインアップ</button>
+        <button className="btn btn-tag signup-btn-tag--bookmark" onClick={()=> {firebase.auth().signOut()}}><i class="fas fa-user-times"></i>ログアウト</button>
     </div>
   </>
   )

@@ -6,11 +6,13 @@ import {
   DELETE_TASK
 } from '../actions'
 import AppContext from '../contexts/AppContext'
+import { AuthContext } from '../contexts/AuthService'
 import { timeCurrentIso8601 } from '../utils'
 
 export const Task = ({ task }) => {
-
   const { dispatch } = useContext(AppContext)
+  const user = useContext(AuthContext)
+
   const onClickComplete = e => {
     const id = task.id
     const Progress = task.progress
@@ -34,7 +36,7 @@ export const Task = ({ task }) => {
       dispatch({ type:DELETE_TASK, id })
       dispatch({
         type: ADD_OPERATION_LOG,
-        description: `タスク"${task.title}"を削除しました。`,
+        description: `${user.displayName}さんがタスク"${task.title}"を削除しました。`,
         operatedAt: `${timeCurrentIso8601()}`
       })
     }

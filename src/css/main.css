@@ -206,7 +206,7 @@ button.signup-btn-tag--bookmark {
   background-color: #ddd;
 }
 button.signup-btn-tag--bookmark::before {
-  background-color: #4acf60;
+  background-color: black;
 }
 button.signup-btn-tag--bookmark:hover {
   color: #212529;

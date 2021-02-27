@@ -1,17 +1,12 @@
 import React from 'react'
 
-const FormItem = ({ title, name, body, progress, onChangeTitle, onChangeName, onChangeBody, onChangeProgress }) => {
+const FormItem = ({ title, name, body, progress, onChangeTitle, onChangeBody, onChangeProgress }) => {
   return (
       <form>
         <div className="form-window">
           <div className="form-group">
             <label htmlFor="formEventTitle">タスク名</label>
             <input className="form-control" id="formEventTitle" value={title} onChange={e => onChangeTitle(e.target.value)}/>
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="formEventName">作成者</label>
-            <input className="form-control" id="formEventName" value={name} onChange={e => onChangeName(e.target.value)}/>
           </div>
 
           <div className="form-group">
