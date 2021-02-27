@@ -51,16 +51,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function Login({ history }) {
   const classes = useStyles();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
+  
   // contextのuser情報を所得してくる
   const user = useContext(AuthContext)
   // userに値が入っていたら / へ リダイレクト
   if (user) return <Redirect to='/' />
-
+  
   const handleSubmit = e => {
     e.preventDefault()
     firebase.auth().signInWithEmailAndPassword(email, password)
@@ -71,8 +72,9 @@ export default function Login({ history }) {
       console.log(error)
     });
   }
-
-
+  
+  const unCreatable = !email.trim() || !password.trim()
+  
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -108,25 +110,26 @@ export default function Login({ history }) {
             autoComplete="current-password"
             onChange={e => setPassword(e.target.value)} 
           />
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
-          />
+          /> */}
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            disabled={unCreatable}
           >
             Sign In
           </Button>
           <Grid container>
-            <Grid item xs>
+            {/* <Grid item xs>
               <Link href="#" variant="body2">
                 Forgot password?
               </Link>
-            </Grid>
+            </Grid> */}
             <Grid item>
               <Link href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}

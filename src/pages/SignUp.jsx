@@ -3,8 +3,8 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -61,13 +61,17 @@ export default function SignUp() {
       user.updateProfile({
         displayName: name
       })
+      setEmail('')
+      setPassword('')
+      setName('')
+      alert('サインアップが完了しました。')
     })
     .catch((error) => {
       console.log(error)
     });
   }
 
-
+  const unCreatable = !email.trim() || !password.trim() || !name.trim()
 
   return (
     <Container component="main" maxWidth="xs">
@@ -118,12 +122,12 @@ export default function SignUp() {
                 onChange={e => setPassword(e.target.value)}
               />
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="I want to receive inspiration, marketing promotions and updates via email."
               />
-            </Grid>
+            </Grid> */}
           </Grid>
           <Button
             type="submit"
@@ -131,6 +135,7 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            disabled={unCreatable}
           >
             Sign Up
           </Button>
