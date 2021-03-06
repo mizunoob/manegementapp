@@ -1,17 +1,16 @@
 @charset "UTF-8";
 @import "https://use.fontawesome.com/releases/v5.13.0/css/all.css";
+form {
+  font-size: 1rem;
+}
+
 html {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  font-size: 62.5%;
-}
-
-form {
-  font-size: 1.6rem;
 }
 
 .inner {
-  font-size: 1.6rem;
+  font-size: 1rem;
   width: 100%;
   min-height: 100vh;
   padding-top: 1rem;
@@ -28,11 +27,12 @@ form {
 }
 
 .form-group {
+  font-size: 1rem;
   margin-bottom: 8px;
 }
 
 .form-control {
-  font-size: 1.6rem;
+  font-size: 1rem;
 }
 
 .RndStyle {
@@ -62,6 +62,10 @@ form {
   margin-left: 20px;
 }
 
+.MuiContainer-root {
+  font-size: 1rem;
+}
+
 *,
 *:before,
 *:after {
@@ -71,12 +75,12 @@ form {
 
 .btn,
 button.btn {
-  font-size: 1.2rem;
+  font-size: 0.75rem;
   font-weight: 700;
   line-height: 1.5;
   position: relative;
   display: inline-block;
-  padding: 1rem 4rem;
+  padding: 0.625rem 2.5rem;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -89,22 +93,22 @@ button.btn {
   text-decoration: none;
   letter-spacing: 0.1em;
   color: #212529;
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
 }
 
 button.btn-tag {
   position: relative;
-  padding: 1.0rem 1.0rem 1.0rem 52px;
+  padding: 0.625rem 0.625rem 0.625rem 52px;
   color: #000;
 }
 button.btn-tag:before {
   position: absolute;
   top: 0;
   left: 0;
-  width: 4rem;
+  width: 2.5rem;
   height: 100%;
   content: "";
-  border-radius: 0.5rem 0 0 0.5rem;
+  border-radius: 0.3rem 0 0 0.3rem;
 }
 
 button.btn-tag--bookmark {
@@ -136,7 +140,7 @@ button.signup-btn-tag--bookmark i {
   top: 0;
   left: 0;
   width: 40px;
-  padding: 1.0rem 0;
+  padding: 0.625rem 0;
   text-align: center;
   letter-spacing: 0;
   opacity: 0.5;
@@ -161,7 +165,7 @@ button.deletebtn-tag--bookmark:hover i {
 @media screen and (max-width: 959px) {
   button.deletebtn-tag--bookmark {
     width: 75%;
-    margin: 0.5rem auto;
+    margin: 0.3rem auto;
   }
 }
 @media screen and (max-width: 600px) {
@@ -178,7 +182,7 @@ button.spbtn-tag--bookmark {
     width: 75%;
     display: block;
     background-color: #ddd;
-    margin: 0.5rem auto;
+    margin: 0.3rem auto;
   }
   button.spbtn-tag--bookmark::before {
     background-color: #2196f3;
@@ -199,7 +203,7 @@ button.spbtn-tag--bookmark {
 }
 
 .btn.btn-secondary, .btn.btn-info {
-  font-size: 1.6rem;
+  font-size: 1rem;
 }
 
 button.signup-btn-tag--bookmark {
@@ -219,7 +223,7 @@ button.signup-btn-tag--bookmark:hover i {
 @media screen and (max-width: 959px) {
   button.signup-btn-tag--bookmark {
     width: 75%;
-    margin: 0.5rem auto;
+    margin: 0.3rem auto;
   }
 }
 @media screen and (max-width: 600px) {
@@ -238,7 +242,7 @@ button.signup-btn-tag--bookmark:hover i {
   text-align: left;
   width: 30%;
   color: #fff;
-  font-size: 6rem;
+  font-size: 3.75rem;
   letter-spacing: 5px;
   top: 50%;
   text-shadow: -1px -1px 0px #2196f3, 3px 3px 0px #2196f3, 6px 6px 0px #0d47a1;
@@ -246,7 +250,7 @@ button.signup-btn-tag--bookmark:hover i {
 }
 @media screen and (max-width: 374px) {
   .title {
-    font-size: 4.5rem;
+    font-size: 2.8rem;
   }
 }
 
@@ -274,25 +278,49 @@ button.signup-btn-tag--bookmark:hover i {
   }
 }
 
+.form-group {
+  position: relative;
+  padding-top: 1.5rem;
+}
+
+input:placeholder-shown + label {
+  opacity: 0;
+  transform: translateY(1rem);
+}
+
+textarea:placeholder-shown + label {
+  opacity: 0;
+  transform: translateY(1rem);
+}
+
+.form-label {
+  position: absolute;
+  top: 0;
+  font-size: var(--font-size-small);
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.2s ease-out;
+}
+
 .welcome {
-  font-size: 1.6rem;
-  line-height: 1.6rem;
+  font-size: 1rem;
+  line-height: 1rem;
   text-align: left;
   padding-left: 1.6rem;
 }
 
 .hamburger-bars {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   position: absolute;
-  top: 3rem;
-  right: 2rem;
+  top: 2.8rem;
+  right: 1.25rem;
   cursor: pointer;
 }
 .hamburger-bars:hover .fa-bars {
   display: none;
 }
 .hamburger-bars:hover .fa-hamburger {
-  padding-top: 0.5rem;
+  padding-top: 0.26rem;
   display: block;
 }
 .hamburger-bars .fa-hamburger {
@@ -300,8 +328,8 @@ button.signup-btn-tag--bookmark:hover i {
 }
 @media screen and (max-width: 374px) {
   .hamburger-bars {
-    font-size: 2rem;
-    top: 3rem;
+    font-size: 1.25rem;
+    top: 1.875rem;
   }
 }
 
@@ -321,6 +349,14 @@ button.signup-btn-tag--bookmark:hover i {
   color: red;
   font-size: 100%;
   cursor: pointer;
+}
+
+.list-group {
+  margin-right: 10px;
+}
+
+.list-group-item {
+  margin-bottom: 5px;
 }
 
 @media screen and (max-width: 959px) {

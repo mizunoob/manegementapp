@@ -8,13 +8,13 @@
   text-align: left;
   width: 30%;
   color: #fff;
-  font-size: 6rem;
+  font-size: 3.75rem;
   letter-spacing: 5px;
   top: 50%;
   text-shadow: -1px -1px 0px #2196f3, 3px 3px 0px #2196f3, 6px 6px 0px #0d47a1;
   user-select: none;
   @include mini-sp {
-    font-size: 4.5rem;
+    font-size: 2.8rem;
   }
 }
 
@@ -38,9 +38,33 @@
   }
 }
 
+.form-group {
+    position: relative;
+    padding-top: 1.5rem;
+}
+  
+input:placeholder-shown + label {
+    opacity: 0;
+    transform: translateY(1rem);
+}
+textarea:placeholder-shown + label {
+    opacity: 0;
+    transform: translateY(1rem);
+}
+.form-label {
+    position: absolute;
+    top: 0;
+    font-size: var(--font-size-small);
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.2s ease-out;
+}
+ 
+
+
 .welcome {
-  font-size: 1.6rem;
-  line-height: 1.6rem;
+  font-size: 1rem;
+  line-height: 1rem;
   text-align: left;
   padding-left: 1.6rem;
 }
@@ -48,17 +72,17 @@
 
 //// ハンバーガー ////
 .hamburger-bars {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   position: absolute;
-  top: 3rem;
-  right: 2rem;
+  top: 2.8rem;
+  right: 1.25rem;
   cursor: pointer;
   &:hover {
     .fa-bars {
       display: none;
     }
     .fa-hamburger {
-      padding-top: 0.5rem;
+      padding-top: 0.26rem;
       display: block;
     }
   }
@@ -66,8 +90,8 @@
     display: none;
   }
   @include mini-sp {
-    font-size: 2rem;
-    top: 3rem;
+    font-size: 1.25rem;
+    top: 1.875rem;
   }
 }
 

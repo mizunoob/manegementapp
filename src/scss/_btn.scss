@@ -7,12 +7,12 @@
 
 .btn,
 button.btn {
-  font-size: 1.2rem;
+  font-size: 0.75rem;
   font-weight: 700;
   line-height: 1.5;
   position: relative;
   display: inline-block;
-  padding: 1rem 4rem;
+  padding: 0.625rem 2.5rem;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -25,24 +25,24 @@ button.btn {
   text-decoration: none;
   letter-spacing: 0.1em;
   color: #212529;
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
 }
 
 button.btn-tag {
   position: relative;
-  padding: 1.0rem 1.0rem 1.0rem 52px;
+  padding: 0.625rem 0.625rem 0.625rem 52px;
   color: #000;
   &:before {
     position: absolute;
     top: 0;
     left: 0;
   
-    width: 4rem;
+    width: 2.5rem;
     height: 100%;
   
     content: "";
   
-    border-radius: 0.5rem 0 0 0.5rem;
+    border-radius: 0.3rem 0 0 0.3rem;
   }
 }
 
@@ -76,7 +76,7 @@ button.signup-btn-tag--bookmark i {
   left: 0;
 
   width: 40px;
-  padding: 1.0rem 0;
+  padding: 0.625rem 0;
 
   text-align: center;
   letter-spacing: 0;
@@ -102,7 +102,7 @@ button.deletebtn-tag--bookmark {
   }
   @include tab {
     width: 75%;
-    margin: 0.5rem auto;
+    margin: 0.3rem auto;
   }
   @include sp {
     width: 90%;
@@ -117,7 +117,7 @@ button.spbtn-tag--bookmark {
     width: 75%;
     display: block;
     background-color: #ddd;
-    margin: 0.5rem auto;
+    margin: 0.3rem auto;
     &::before {
       background-color: #2196f3;
     }
@@ -137,7 +137,7 @@ button.spbtn-tag--bookmark {
 
 // フォーム用
 .btn.btn-secondary, .btn.btn-info {
-  font-size: 1.6rem;
+  font-size: 1rem;
 }
 
 
@@ -157,7 +157,7 @@ button.signup-btn-tag--bookmark {
   }
   @include tab {
     width: 75%;
-    margin: 0.5rem auto;
+    margin: 0.3rem auto;
   }
   @include sp {
     width: 90%;

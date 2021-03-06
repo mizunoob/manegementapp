@@ -21,18 +21,18 @@
 }
 
 /////common/////
+
+form {
+  font-size: 1rem;
+}
+
 html {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  font-size: 62.5%;
-}
-
-form {
-  font-size: 1.6rem;
 }
 
 .inner {
-  font-size: 1.6rem;
+  font-size: 1rem;
   width: 100%;
   min-height: 100vh;
   padding-top: 1rem;
@@ -49,11 +49,12 @@ form {
 }
 
 .form-group {
+  font-size: 1rem;
   margin-bottom: 8px;
 }
 
 .form-control {
-  font-size: 1.6rem;
+  font-size: 1rem;
 }
 
 .RndStyle {
@@ -79,4 +80,8 @@ form {
   color: red;
   font-weight: bold;
   margin-left: 20px;
+}
+
+.MuiContainer-root {
+  font-size: 1rem;
 }
