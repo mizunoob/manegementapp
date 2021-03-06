@@ -1,13 +1,9 @@
 import React, { useContext } from 'react'
-import {
-  CHANGE_COMP_TO_INCOMP,
-  CHANGE_INCOMP_TO_COMP,
-  ADD_OPERATION_LOG,
-  DELETE_TASK
-} from '../actions'
+import { ADD_OPERATION_LOG } from '../actions'
 import AppContext from '../contexts/AppContext'
 import { AuthContext } from '../contexts/AuthService'
 import { timeCurrentIso8601 } from '../utils'
+import { db } from "../firebase"
 
 export const Task = ({ task }) => {
   const { dispatch } = useContext(AppContext)
@@ -20,11 +16,29 @@ export const Task = ({ task }) => {
     switch (Progress) {
       case '未完了':
         const incompleteResult = window.confirm('このタスクは未完了のタスクです。完了に変更しますか？')
-        if (incompleteResult) dispatch({ type:CHANGE_INCOMP_TO_COMP, id})
+        if (incompleteResult) {
+          const compRef = db.collection("taskdata").doc(id)
+          const Comp = {progress: '完了'}
+          compRef.update(Comp)
+          dispatch({
+            type: ADD_OPERATION_LOG,
+            description: `${user.displayName}さんが${task.title}の進捗を完了に変更しました。`,
+            operatedAt: `${timeCurrentIso8601()}`
+          })
+        }
         break
       case '完了':
         const completeResult = window.confirm('このタスクは完了したタスクです。未完了に変更しますか？')
-        if (completeResult) dispatch({ type:CHANGE_COMP_TO_INCOMP, id})
+        if (completeResult) {
+          const compRef = db.collection("taskdata").doc(id)
+          const Incomp = {progress: '未完了'}
+          compRef.update(Incomp)
+          dispatch({
+            type: ADD_OPERATION_LOG,
+            description: `${user.displayName}さんが${task.title}の進捗を未完了に変更しました。`,
+            operatedAt: `${timeCurrentIso8601()}`
+          })
+        }
         break
     }
   }
@@ -33,11 +47,14 @@ export const Task = ({ task }) => {
     const id = task.id
     const deleteResult = window.confirm('このタスクを削除しますか？') 
     if (deleteResult) {
-      dispatch({ type:DELETE_TASK, id })
-      dispatch({
-        type: ADD_OPERATION_LOG,
-        description: `${user.displayName}さんがタスク"${task.title}"を削除しました。`,
-        operatedAt: `${timeCurrentIso8601()}`
+      db.collection("taskdata").doc(id).delete().then(() => {
+        alert(`${task.title}を削除しました！`)
+        console.log(task)
+        dispatch({
+          type: ADD_OPERATION_LOG,
+          description: `${user.displayName}さんが${task.title}を削除しました。`,
+          operatedAt: `${timeCurrentIso8601()}`
+        })
       })
     }
   }
@@ -51,7 +68,7 @@ export const Task = ({ task }) => {
     <div className="item-body">
       <p className="mb-1">{task.body}</p>
       <span className="delete-icon" onClick={deleteTask}>
-        <i class="fas fa-folder-minus"></i>
+        <i class="fas fa-folder-minus" alt="削除"></i>
       </span>
     </div>
     <div className="list-small">

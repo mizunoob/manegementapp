@@ -1,16 +1,14 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { OperationLog } from './OperationLog'
-import AppContext from '../contexts/AppContext'
 
-export const OperationLogs = () => {
-  const { state } = useContext(AppContext)
+export const OperationLogs = ({ operationLog }) => {
   return(
     <>
-      <h2>操作ログ一覧</h2>
+      <h4>操作ログ一覧</h4>
       <ul>
-      {Array.isArray(state.operationLogs) && state.operationLogs.map((operationLog, index) => {
+      {Array.isArray(operationLog) && operationLog.map((logs, index) => {
         return (
-          <OperationLog key={index} operationLog={operationLog} state={state}/>
+          <OperationLog key={index} logs={logs} />
         )
       })}
       </ul>

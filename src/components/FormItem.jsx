@@ -5,13 +5,13 @@ const FormItem = ({ title, name, body, progress, onChangeTitle, onChangeBody, on
       <form>
         <div className="form-window">
           <div className="form-group">
-            <label htmlFor="formEventTitle">タスク名</label>
-            <input className="form-control" id="formEventTitle" value={title} onChange={e => onChangeTitle(e.target.value)}/>
+            <input className="form-control" id="formEventTitle" value={title} onChange={e => onChangeTitle(e.target.value)} placeholder="タスク名"/>
+            <label className="form-label" htmlFor="formEventTitle">タスク名</label>
           </div>
 
           <div className="form-group">
-            <label htmlFor="formEventBody">タスク内容</label>
-            <textarea className="form-control" id="formEventBody" value={body} onChange={e => onChangeBody(e.target.value)}></textarea>
+            <textarea className="form-control" id="formEventBody" value={body} onChange={e => onChangeBody(e.target.value)} placeholder="タスク内容"></textarea>
+            <label className="form-label" htmlFor="formEventBody">タスク内容</label>
           </div>
 
           <div className="form-group">

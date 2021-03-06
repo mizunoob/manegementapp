@@ -6,10 +6,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-tabs/style/react-tabs.css';
 
 const Room = () => {
+
   return (
-    <div className="inner">
-      <Hamburger />
-      <AllTabs />
+    <div className="room">
+      <div className="inner">
+        <Hamburger />
+        <AllTabs />
+      </div>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import {
-  ADD_OPERATION_LOG,
-  DELETE_ALL_OPERATION_LOGS
+  ADD_OPERATION_LOG
 } from '../actions'
+import firebase from 'firebase'
 
 export const operationLogs = (state = [], action) => {
   switch (action.type) {
@@ -10,9 +10,7 @@ export const operationLogs = (state = [], action) => {
         description: action.description,
         operatedAt: action.operatedAt
       }
-      return [operationLog, ...state]
-    case DELETE_ALL_OPERATION_LOGS:
-      return []
+      return firebase.firestore().collection('operationLogs').add(operationLog)
     default:
       return state
   }

@@ -12,6 +12,7 @@ import FormItem from './FormItem'
 import { AuthContext } from '../contexts/AuthService'
 
 import firebase from '../firebase'
+// import { db } from "../firebase"
 
 export const Form = () => {
   const { state, dispatch } = useContext(AppContext)
@@ -36,6 +37,8 @@ export const Form = () => {
   
   const onClickAdd = e => {
     e.preventDefault()
+    const result = window.confirm('タスクを作成しますか？(個人情報・機密情報の記入には十分ご注意ください)')
+    if (result) {
     dispatch({
       type: CREATE_TASK,
       title,
@@ -43,7 +46,6 @@ export const Form = () => {
       body,
       progress
     })
-
     dispatch({
       type: ADD_OPERATION_LOG,
       description: `${user.displayName}さんがタスク"${title}"を作成しました。`,
@@ -51,24 +53,25 @@ export const Form = () => {
     })
     setTitle('')
     setBody('')
+    }
   }
 
   const deleteAllTasks = e => {
     e.preventDefault()
-    const result = window.confirm('全てのタスクを削除してもよろしいですか？')
+    const result = window.confirm('全てのタスクを削除してもよろしいですか？(データベース上には残ります)')
     if (result) {
       dispatch({ type: DELETE_ALL_TASKS })
-      dispatch({
-        type: ADD_OPERATION_LOG,
-        description: `${user.displayName}さんが全てのタスクを削除しました。`,
-        operatedAt: `${timeCurrentIso8601()}`
-      })
+      // dispatch({
+      //   type: ADD_OPERATION_LOG,
+      //   description: `${user.displayName}さんが全てのタスクを削除しました。`,
+      //   operatedAt: `${timeCurrentIso8601()}`
+      // })
     }
   }
 
   const deleteAllOperationLogs = e => {
     e.preventDefault()
-    const result = window.confirm('全ての操作ログを削除してもよろしいですか？')
+    const result = window.confirm('全ての操作ログを削除してもよろしいですか？(データベース上には残ります)')
     if (result) {
       dispatch({ type: DELETE_ALL_OPERATION_LOGS })
     }

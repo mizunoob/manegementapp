@@ -3,8 +3,8 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -22,7 +22,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="https://mizuno-portfolio.web.app/">
         K.Mizuno's Portfolio
       </Link>{' '}
       {new Date().getFullYear()}
@@ -30,6 +30,7 @@ function Copyright() {
     </Typography>
   );
 }
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -73,7 +74,7 @@ export default function Login({ history }) {
     });
   }
   
-  const unCreatable = !email.trim() || !password.trim()
+  const unCreatable = email === '' || password === ''
   
   return (
     <Container component="main" maxWidth="xs">
@@ -84,6 +85,9 @@ export default function Login({ history }) {
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
+        </Typography>
+        <Typography component="h1" variant="h5">
+          (ご自由にお使いください)
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
